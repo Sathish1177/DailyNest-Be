@@ -82,6 +82,58 @@ const productSchema = new mongoose.Schema({
   tags: [{
     type: String
   }],
+  origin: {
+    type: String,
+    trim: true
+  },
+  shelfLife: {
+    type: String,
+    trim: true
+  },
+  dimensions: {
+    type: String,
+    trim: true
+  },
+  warranty: {
+    type: String,
+    trim: true
+  },
+  weight: {
+    type: String,
+    trim: true
+  },
+  modelNumber: {
+    type: String,
+    trim: true
+  },
+  warrantyPeriod: {
+    type: String,
+    trim: true
+  },
+  material: {
+    type: String,
+    trim: true
+  },
+  gender: {
+    type: String,
+    trim: true
+  },
+  capacity: {
+    type: String,
+    trim: true
+  },
+  skinType: {
+    type: String,
+    trim: true
+  },
+  ingredients: {
+    type: String,
+    trim: true
+  },
+  volume: {
+    type: String,
+    trim: true
+  },
   isFeatured: {
     type: Boolean,
     default: false

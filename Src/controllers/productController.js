@@ -31,7 +31,20 @@ export const createProduct = async (req, res) => {
       isTrending,
       isBestSeller,
       isComingSoon,
-      isActive
+      isActive,
+      origin,
+      shelfLife,
+      dimensions,
+      warranty,
+      weight,
+      modelNumber,
+      warrantyPeriod,
+      material,
+      gender,
+      capacity,
+      skinType,
+      ingredients,
+      volume
     } = req.body;
 
     // Check files
@@ -91,7 +104,20 @@ export const createProduct = async (req, res) => {
       isTrending: isTrending === "true" || isTrending === true,
       isBestSeller: isBestSeller === "true" || isBestSeller === true,
       isComingSoon: isComingSoon === "true" || isComingSoon === true,
-      isActive: isActive !== "false" && isActive !== false
+      isActive: isActive !== "false" && isActive !== false,
+      origin,
+      shelfLife,
+      dimensions,
+      warranty,
+      weight,
+      modelNumber,
+      warrantyPeriod,
+      material,
+      gender,
+      capacity,
+      skinType,
+      ingredients,
+      volume
     });
 
     res.status(201).json(product);
@@ -230,7 +256,20 @@ export const updateProduct = async (req, res) => {
       isTrending,
       isBestSeller,
       isComingSoon,
-      isActive
+      isActive,
+      origin,
+      shelfLife,
+      dimensions,
+      warranty,
+      weight,
+      modelNumber,
+      warrantyPeriod,
+      material,
+      gender,
+      capacity,
+      skinType,
+      ingredients,
+      volume
     } = req.body;
 
     if (name) {
@@ -246,6 +285,19 @@ export const updateProduct = async (req, res) => {
     if (brand !== undefined) product.brand = brand;
     if (category !== undefined) product.category = category;
     if (subcategory !== undefined) product.subcategory = subcategory;
+    if (origin !== undefined) product.origin = origin;
+    if (shelfLife !== undefined) product.shelfLife = shelfLife;
+    if (dimensions !== undefined) product.dimensions = dimensions;
+    if (warranty !== undefined) product.warranty = warranty;
+    if (weight !== undefined) product.weight = weight;
+    if (modelNumber !== undefined) product.modelNumber = modelNumber;
+    if (warrantyPeriod !== undefined) product.warrantyPeriod = warrantyPeriod;
+    if (material !== undefined) product.material = material;
+    if (gender !== undefined) product.gender = gender;
+    if (capacity !== undefined) product.capacity = capacity;
+    if (skinType !== undefined) product.skinType = skinType;
+    if (ingredients !== undefined) product.ingredients = ingredients;
+    if (volume !== undefined) product.volume = volume;
 
     if (isFeatured !== undefined) product.isFeatured = isFeatured === "true" || isFeatured === true;
     if (isTrending !== undefined) product.isTrending = isTrending === "true" || isTrending === true;
