@@ -59,17 +59,24 @@ const seedDefaultUsers = async () => {
   }
 };
 
+let dbConnectionError = null;
+
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("✅ MongoDB Connected");
+    const mongoUri = process.env.MONGO_URI || "mongodb+srv://lsathish017_db_user:bXdFcjmwOGIRNp2Z@cluster0.bpj6wet.mongodb.net/?appName=Cluster0";
+    await mongoose.connect(mongoUri, {
+      serverSelectionTimeoutMS: 10000,
+    });
+    dbConnectionError = null;
+    console.log("✅ MongoDB Connected Successfully");
     
     // Seed default users
     await seedDefaultUsers();
   } catch (error) {
+    dbConnectionError = error.message;
     console.log("❌ Database Connection Error:", error.message);
-    process.exit(1);
   }
 };
 
+export { dbConnectionError };
 export default connectDB;

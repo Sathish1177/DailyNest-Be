@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
+import mongoose from "mongoose";
+import { dbConnectionError } from "./config/db.js";
 
 // Route imports
 import authRoutes from "./routes/authRoutes.js";
@@ -29,9 +31,22 @@ app.use(express.urlencoded({ extended: true }));
 // Serve static uploaded files (Category images, Product images/videos, Banners)
 app.use("/uploads", express.static(path.join(__dirname, "../public/uploads")));
 
-// Test Route
+// Test & Health Route
 app.get("/", (req, res) => {
   res.send("DailyNest Backend API Running 🚀");
+});
+
+app.get("/health", (req, res) => {
+  const dbStates = ["disconnected", "connected", "connecting", "disconnecting"];
+  const state = mongoose.connection.readyState;
+  res.json({
+    status: "ok",
+    database: dbStates[state] || "unknown",
+    dbReadyState: state,
+    dbError: dbConnectionError,
+    hasMongoUriEnv: !!process.env.MONGO_URI,
+    environment: process.env.NODE_ENV || "production"
+  });
 });
 
 // API Routes mounting
