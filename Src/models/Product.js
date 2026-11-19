@@ -69,6 +69,10 @@ const productSchema = new mongoose.Schema({
     trim: true
   },
   variants: [productVariantSchema],
+  store: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Store"
+  },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",

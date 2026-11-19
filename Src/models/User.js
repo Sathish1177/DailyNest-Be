@@ -43,8 +43,12 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ["customer", "admin", "super-admin"],
+    enum: ["customer", "admin", "super-admin", "store-admin"],
     default: "customer"
+  },
+  store: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Store"
   },
   addresses: [addressSchema],
   isActive: {

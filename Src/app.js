@@ -13,6 +13,7 @@ import reviewRoutes from "./routes/reviewRoutes.js";
 import bannerRoutes from "./routes/bannerRoutes.js";
 import settingRoutes from "./routes/settingRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
+import storeRoutes from "./routes/storeRoutes.js";
 
 const app = express();
 
@@ -43,6 +44,7 @@ app.use("/api/reviews", reviewRoutes);
 app.use("/api/banners", bannerRoutes);
 app.use("/api/settings", settingRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/stores", storeRoutes);
 
 // Global Error Handler Middleware
 app.use((err, req, res, next) => {

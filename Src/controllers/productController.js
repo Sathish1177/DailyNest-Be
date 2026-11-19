@@ -157,6 +157,7 @@ export const getProducts = async (req, res) => {
 
     if (category) query.category = category;
     if (subcategory) query.subcategory = subcategory;
+    if (req.query.store) query.store = req.query.store;
 
     if (isFeatured !== undefined) query.isFeatured = isFeatured === "true";
     if (isTrending !== undefined) query.isTrending = isTrending === "true";
@@ -191,6 +192,7 @@ export const getProducts = async (req, res) => {
     const products = await Product.find(query)
       .populate("category", "name slug")
       .populate("subcategory", "name slug")
+      .populate("store", "name slug logo rating")
       .sort(sortOptions)
       .skip(skip)
       .limit(Number(limit));
@@ -218,7 +220,8 @@ export const getProductBySlugOrId = async (req, res) => {
 
     const product = await Product.findOne(query)
       .populate("category", "name slug")
-      .populate("subcategory", "name slug");
+      .populate("subcategory", "name slug")
+      .populate("store", "name slug logo banner rating tagline phone address socialLinks");
 
     if (!product) {
       return res.status(404).json({ message: "Product not found" });

@@ -84,6 +84,7 @@ export const register = async (req, res) => {
       mobileNumber: user.mobileNumber,
       email: user.email,
       role: user.role,
+      store: user.store,
       token: generateToken(user._id)
     });
   } catch (error) {
@@ -117,6 +118,7 @@ export const login = async (req, res) => {
       mobileNumber: user.mobileNumber,
       email: user.email,
       role: user.role,
+      store: user.store,
       token: generateToken(user._id)
     });
   } catch (error) {
@@ -173,6 +175,7 @@ export const googleLogin = async (req, res) => {
       mobileNumber: user.mobileNumber,
       email: user.email,
       role: user.role,
+      store: user.store,
       token: generateToken(user._id)
     });
   } catch (error) {
